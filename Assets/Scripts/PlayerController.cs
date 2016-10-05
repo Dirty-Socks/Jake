@@ -5,6 +5,11 @@ public class PlayerController : MonoBehaviour {
 
 	public float jumpForce = 6f;
 	private Rigidbody2D rigidBody;
+	public Animator animator;
+
+	void Start() {
+		animator.SetBool ("isAlive", true);
+	}
 
 	// Use this for initialization
 	void Awake () {
@@ -18,6 +23,8 @@ public class PlayerController : MonoBehaviour {
 			//Debug.Log ("Left Mouse Button Clicked");
 			Jump ();
 		}
+
+		animator.SetBool("isGrounded", IsGrounded());
 	}
 
 	void Jump () {
@@ -35,4 +42,6 @@ public class PlayerController : MonoBehaviour {
 			return false;
 		}
 	}
+
+
 }
