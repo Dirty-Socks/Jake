@@ -21,6 +21,18 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Jump () {
+		if (IsGrounded()){
 		rigidBody.AddForce (Vector2.up * jumpForce, ForceMode2D.Impulse);
+		}
+	}
+
+	public LayerMask groundLayer;
+
+	bool IsGrounded() {
+		if (Physics2D.Raycast (this.transform.position, Vector2.down, 0.2f, groundLayer.value)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
