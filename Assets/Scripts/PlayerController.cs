@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public float jumpForce = 6f;
+	public float runningSpeed = 1.5f;
 	private Rigidbody2D rigidBody;
 	public Animator animator;
 
@@ -25,6 +26,12 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		animator.SetBool("isGrounded", IsGrounded());
+	}
+
+	void FixedUpdate () {
+		if (rigidBody.velocity.x < runningSpeed) {
+			rigidBody.velocity = new Vector2 (runningSpeed, rigidBody.velocity.y);
+		}
 	}
 
 	void Jump () {
