@@ -21,8 +21,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Jump () {
-		if (IsGrounded()){
-		rigidBody.AddForce (Vector2.up * jumpForce, ForceMode2D.Impulse);
+		if (IsGrounded ()) {
+			rigidBody.AddForce (Vector2.up * jumpForce, ForceMode2D.Impulse);
 		}
 	}
 
