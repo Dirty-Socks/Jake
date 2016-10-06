@@ -24,7 +24,7 @@ public class LevelGenerator : MonoBehaviour {
 
 		Vector3 spawnPosition = Vector3.zero;
 
-		if (piece.Count == 0) {
+		if (pieces.Count == 0) {
 			spawnPosition = levelStartPoint.position;
 		} else {
 			spawnPosition = pieces [pieces.Count - 1].exitPoint.position;
