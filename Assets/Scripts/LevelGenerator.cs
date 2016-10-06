@@ -16,8 +16,18 @@ public class LevelGenerator : MonoBehaviour {
 		instance = this;
 	}
 
+	void Start () {
+		GenerateInitialPieces ();
+	}
+
+	public void GenerateInitialPieces() {
+		for (int i = 0; i < 2; i++) {
+			AddPiece ();
+		}
+	}
+
 	public void AddPiece () {
-		int randomIndex = Random.Range (0, levelPrefabs.Count);
+		int randomIndex = Random.Range (0, levelPrefabs.Count-1);
 
 		LevelPiece piece = (LevelPiece)Instantiate (levelPrefabs [randomIndex]);
 		piece.transform.SetParent (this.transform, false);
@@ -32,6 +42,12 @@ public class LevelGenerator : MonoBehaviour {
 
 		piece.transform.position = spawnPosition;
 		pieces.Add (piece);
+	}
 
+	public void RemoveOldestPiece (){
+		LevelPiece oldestPiece = pieces [0];
+
+		pieces.Remove (oldestPiece);
+		Destroy (oldestPiece.gameObject);
 	}
 }
