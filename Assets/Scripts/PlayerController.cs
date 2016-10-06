@@ -3,27 +3,29 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-	public float jumpForce = 6f;
-	public float runningSpeed = 1.5f;
-	private Rigidbody2D rigidBody;
-	public Animator animator;
 	public static PlayerController instance;
 
-	void Start() {
-		animator.SetBool ("isAlive", true);
-	}
+	public float jumpForce = 6f;
+	public float runningSpeed = 1.5f;
+	public Animator animator;
 
-	// Use this for initialization
+	private Rigidbody2D rigidBody;
+	private Vector3 startingPosition;
+
 	void Awake () {
 		rigidBody = GetComponent<Rigidbody2D> ();
 		instance = this;
+		startingPosition = this.transform.position;
 	}
-	
-	// Update is called once per frame
+
+	public void StartGame() {
+		animator.SetBool ("isAlive", true);
+		this.transform.position = startingPosition;
+	}
+		
 	void Update () {
 		if (GameManager.instance.currentGameState == GameState.inGame) {
 			if (Input.GetMouseButtonDown (0)) {
-				//Debug.Log ("Left Mouse Button Clicked");
 				Jump ();
 			}
 			animator.SetBool ("isGrounded", IsGrounded ());

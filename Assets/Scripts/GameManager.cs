@@ -21,26 +21,19 @@ public class GameManager : MonoBehaviour {
 		currentGameState = GameState.menu;
 	}
 
-	void Update () {
-		if (Input.GetButtonDown("s")){
-			StartGame ();
-		}
-	}
-
-	// Use this for initialization
 	public void StartGame () {
 		SetGameState (GameState.inGame);
+		PlayerController.instance.StartGame ();
 	}
 
 	public void GameOver () {
 		SetGameState (GameState.gameOver);
 	}
-	
-	// Update is called once per frame
+
 	public void BackToMenu () {
 		SetGameState (GameState.menu);
 	}
-
+		
 	void SetGameState (GameState newGameState) {
 		if (newGameState == GameState.menu) {
 
@@ -49,7 +42,12 @@ public class GameManager : MonoBehaviour {
 		} else if (newGameState == GameState.gameOver) {
 
 		}
-
 		currentGameState = newGameState;
+	}
+
+	void Update () {
+		if (Input.GetButtonDown("s")){
+			StartGame ();
+		}
 	}
 }
