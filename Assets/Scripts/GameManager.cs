@@ -11,6 +11,21 @@ public enum GameState
 public class GameManager : MonoBehaviour {
 
 	public GameState currentGameState = GameState.menu;
+	public static GameManager instance;
+
+	void Awake () {
+		instance = this;
+	}
+
+	void Start () {
+		currentGameState = GameState.menu;
+	}
+
+	void Update () {
+		if (Input.GetButtonDown("s")){
+			StartGame ();
+		}
+	}
 
 	// Use this for initialization
 	public void StartGame () {
@@ -35,6 +50,6 @@ public class GameManager : MonoBehaviour {
 
 		}
 
-		currentGameState = GameState;
+		currentGameState = newGameState;
 	}
 }
