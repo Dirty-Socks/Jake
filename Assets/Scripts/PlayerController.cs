@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
 	public float runningSpeed = 1.5f;
 	private Rigidbody2D rigidBody;
 	public Animator animator;
+	public static PlayerController instance;
 
 	void Start() {
 		animator.SetBool ("isAlive", true);
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		rigidBody = GetComponent<Rigidbody2D> ();
+		instance = this;
 	}
 	
 	// Update is called once per frame
@@ -52,5 +54,8 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-
+	public void Kill () {
+		GameManager.instance.GameOver ();
+		animator.SetBool ("isAlive", false);
+	}
 }
